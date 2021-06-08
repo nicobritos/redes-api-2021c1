@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "esnext",
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "emitDecoratorMetadata": true,
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "allowUnreachableCode": false,
+        "removeComments": true,
+        "allowJs": true,
+        "outDir": "./dist",
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "noImplicitOverrides": true,
+        "paths": {
+            "@models/*": [
+                "./src/models/*"
+            ]
+        },
+        "types": [
+            "node"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "**/*.test.ts",
+        "**/*.spec.ts"
+    ],
+    "compileOnSave": false,
+    "buildOnSave": false
+}

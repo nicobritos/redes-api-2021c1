@@ -1,0 +1,9 @@
+.idea/
+node_modules/
+tmp/sqlitedb.db
+.DS_Store
+**/SyncToy_*
+/secret/
+npm-debug.log
+/logs/**/*.log
+/dist
