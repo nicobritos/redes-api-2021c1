@@ -14,9 +14,18 @@ export class UserControllerImpl implements RegistrableController {
 
     public register(app: e.Application): void {
         app.post('/login', this.login);
+        app.get('/users', this.isEmailAvailable);
     }
 
-    public async login(req: Request, res: Response) {
+    public async isEmailAvailable(req: Request, res: Response): Promise<void> {
+        if (!req.query.email || typeof req.query.email !== 'string') {
+            res.sendStatus(400);
+        }
+
+        res.sendStatus((await this.userService.isEmailAvailable(req.query.email as string)) ? 404 : 200);
+    }
+
+    public async login(req: Request, res: Response): Promise<void> {
         passport.authenticate('local', {session: false}, async (err, user: AuthenticatedUser, passportInfo) => {
             if (!err && !user) {
                 return res.sendStatus(401);
