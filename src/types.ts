@@ -1,11 +1,8 @@
 import repositories from './repositories/repositories.types';
 import services from './services/services.types';
-import controllers from './services/services.types';
 
 let TYPES = {
-    Controllers: {
-        ...controllers
-    },
+    Controller: Symbol('Controller'),
     Repositories: {
         ...repositories
     },

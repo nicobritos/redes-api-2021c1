@@ -18,7 +18,7 @@
         "baseUrl": ".",
         "strictNullChecks": true,
         "noImplicitThis": true,
-        "noImplicitOverrides": true,
+        "noImplicitOverride": true,
         "paths": {
             "@models/*": [
                 "./src/models/*"

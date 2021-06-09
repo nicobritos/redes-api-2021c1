@@ -41,9 +41,9 @@ function createExpressApp(): express.Application {
 }
 
 function registerControllers(app: express.Application): void {
-    if (!container.isBound(TYPES.Controllers)) return;
+    if (!container.isBound(TYPES.Controller)) return;
 
-    const controllers: RegistrableController[] = container.getAll<RegistrableController>(TYPES.Controllers);
+    const controllers: RegistrableController[] = container.getAll<RegistrableController>(TYPES.Controller);
     controllers.forEach(controller => controller.register(app));
 }
 

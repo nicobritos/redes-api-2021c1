@@ -8,9 +8,7 @@ import {ID} from '@models/utils/UtilityTypes';
 import {Buffer} from 'buffer';
 
 export abstract class IDUtils {
-    public static readonly STATIC_ID = 1;
-
-    private static readonly ID_GENERATOR = new FlakeId({ datacenter: 1, worker: 1 }); // TODO
+    private static readonly ID_GENERATOR = new FlakeId({ datacenter: 1, worker: 1 });
     private static readonly MAX_ID_LENGTH = 16;
 
     /**
