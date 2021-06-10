@@ -7,6 +7,7 @@ import passport from 'passport';
 import {AuthenticatedUser} from '@models/AuthenticatedUser';
 import {Unauthorized} from '../exceptions/Unauthorized';
 import {UserController} from '../interfaces/controllers/UserController';
+import {mainLogger} from '../utils/MainLogger';
 
 @injectable()
 export class UserControllerImpl implements UserController {
@@ -28,6 +29,14 @@ export class UserControllerImpl implements UserController {
 
     public async login(req: Request, res: Response): Promise<void> {
         passport.authenticate('local', {session: false}, async (err, user: AuthenticatedUser, passportInfo) => {
+            let ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '') as string;
+            mainLogger.info({
+                message: 'login',
+                successful: !err && user,
+                username: req.body.email,
+                ip: ip,
+            });
+
             if (!err && !user) {
                 return res.sendStatus(401);
             } else if (err instanceof Unauthorized || !user) {

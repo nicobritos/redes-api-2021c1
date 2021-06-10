@@ -54,7 +54,7 @@ function registerControllers(app: express.Application): void {
 
         res.on('finish', () => {
             let diff = Date.now() - start;
-            console.log(diff);
+
             mainLogger.info({
                 message: 'stats',
                 duration: diff,
@@ -65,7 +65,7 @@ function registerControllers(app: express.Application): void {
         });
 
         next();
-    })
+    });
 
     for (let name of Object.values(TYPES.Controller)) {
         container.get<RegistrableController>(name).register(app);
