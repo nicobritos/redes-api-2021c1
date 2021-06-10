@@ -49,6 +49,20 @@ function createExpressApp(): express.Application {
 }
 
 function registerControllers(app: express.Application): void {
+    app.use((req, res, next) => {
+        let start = Date.now();
+        res.on('finish', () => {
+            let diff = Date.now() - start;
+            mainLogger.info({
+                message: 'stats',
+                duration: diff,
+                method: req.method,
+                status: res.statusCode,
+                url: req.url
+            })
+        })
+    })
+
     for (let name of Object.values(TYPES.Controller)) {
         container.get<RegistrableController>(name).register(app);
     }
