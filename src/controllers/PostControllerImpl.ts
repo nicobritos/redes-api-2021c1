@@ -11,6 +11,7 @@ import {PostService} from '../interfaces/services/PostService';
 import {Post} from '@models/Post';
 import {assertStringID} from '@models/utils/Utils';
 import {childLogger, mainLogger} from '../utils/MainLogger';
+import container from '../inversify.config';
 
 @injectable()
 export class PostControllerImpl implements PostController {
@@ -20,8 +21,8 @@ export class PostControllerImpl implements PostController {
     private readonly service: PostService;
 
     public register(app: e.Application): void {
-        app.get('/posts', this.findAll);
-        app.get('/posts/:id', this.findById);
+        app.get('/posts', this.findAll.bind(this));
+        app.get('/posts/:id', this.findById.bind(this));
     }
 
     public async findAll(req: Request, res: Response): Promise<void> {

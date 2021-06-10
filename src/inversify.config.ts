@@ -14,8 +14,8 @@ import {UserControllerImpl} from './controllers/UserControllerImpl';
 import {UserController} from './interfaces/controllers/UserController';
 import {PostController} from './interfaces/controllers/PostController';
 import {PostControllerImpl} from './controllers/PostControllerImpl';
-import {RegistrableController} from './controllers/utils/RegisterableController';
 import {ProcessControllerImpl} from './controllers/ProcessControllerImpl';
+import {ProcessController} from './interfaces/controllers/ProcessController';
 
 const container = new Container();
 
@@ -23,12 +23,12 @@ container.bind<AuthService>(TYPES.Services.AuthService).to(AuthServiceImpl).inSi
 
 container.bind<PostRepository>(TYPES.Repositories.PostRepository).to(PostRepositoryImpl).inSingletonScope();
 container.bind<PostService>(TYPES.Services.PostService).to(PostServiceImpl).inSingletonScope();
-container.bind<PostController>(TYPES.Controller).to(PostControllerImpl).inSingletonScope();
+container.bind<PostController>(TYPES.Controller.PostController).to(PostControllerImpl).inSingletonScope();
 
-container.bind<RegistrableController>(TYPES.Controller).to(ProcessControllerImpl).inSingletonScope();
+container.bind<ProcessController>(TYPES.Controller.ProcessController).to(ProcessControllerImpl).inSingletonScope();
 
 container.bind<UserRepository>(TYPES.Repositories.UserRepository).to(UserRepositoryImpl).inSingletonScope();
 container.bind<UserService>(TYPES.Services.UserService).to(UserServiceImpl).inSingletonScope();
-container.bind<UserController>(TYPES.Controller).to(UserControllerImpl).inSingletonScope();
+container.bind<UserController>(TYPES.Controller.UserController).to(UserControllerImpl).inSingletonScope();
 
 export default container;

@@ -12,13 +12,14 @@ import {Post} from '@models/Post';
 import {assertStringID, sleep} from '@models/utils/Utils';
 import {childLogger, mainLogger} from '../utils/MainLogger';
 import {randomInt} from 'crypto';
+import {ProcessController} from '../interfaces/controllers/ProcessController';
 
 @injectable()
-export class ProcessControllerImpl implements RegistrableController {
-    private static readonly LOGGER = childLogger(__dirname, 'PostControllerImpl');
+export class ProcessControllerImpl implements ProcessController {
+    private static readonly LOGGER = childLogger(__dirname, 'ProcessControllerImpl');
 
     public register(app: e.Application): void {
-        app.get('/process', this.process);
+        app.get('/process', this.process.bind(this));
     }
 
     public async process(req: Request, res: Response): Promise<void> {

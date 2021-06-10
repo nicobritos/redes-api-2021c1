@@ -14,8 +14,8 @@ export class UserControllerImpl implements UserController {
     private readonly userService: UserService;
 
     public register(app: e.Application): void {
-        app.post('/login', this.login);
-        app.get('/users', this.isEmailAvailable);
+        app.post('/login', this.login.bind(this));
+        app.get('/users', this.isEmailAvailable.bind(this));
     }
 
     public async isEmailAvailable(req: Request, res: Response): Promise<void> {

@@ -49,10 +49,9 @@ function createExpressApp(): express.Application {
 }
 
 function registerControllers(app: express.Application): void {
-    if (!container.isBound(TYPES.Controller)) return;
-
-    const controllers: RegistrableController[] = container.getAll<RegistrableController>(TYPES.Controller);
-    controllers.forEach(controller => controller.register(app));
+    for (let name of Object.values(TYPES.Controller)) {
+        container.get<RegistrableController>(name).register(app);
+    }
 }
 
 async function connectDatabase(): Promise<Connection> {
