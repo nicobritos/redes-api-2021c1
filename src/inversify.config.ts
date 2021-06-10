@@ -21,7 +21,7 @@ const container = new Container();
 
 container.bind<AuthService>(TYPES.Services.AuthService).to(AuthServiceImpl).inSingletonScope();
 
-container.bind<PostRepository>(TYPES.Repositories.UserRepository).to(PostRepositoryImpl).inSingletonScope();
+container.bind<PostRepository>(TYPES.Repositories.PostRepository).to(PostRepositoryImpl).inSingletonScope();
 container.bind<PostService>(TYPES.Services.PostService).to(PostServiceImpl).inSingletonScope();
 container.bind<PostController>(TYPES.Controller).to(PostControllerImpl).inSingletonScope();
 
