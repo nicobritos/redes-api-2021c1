@@ -8,5 +8,5 @@ export interface UserService {
 
     isEmailAvailable(email: string): Promise<boolean>;
 
-    authenticate(email: string, password: string): Promise<AuthenticatedUser>;
+    authenticate(email: string, password: string, ip: string): Promise<AuthenticatedUser>;
 }

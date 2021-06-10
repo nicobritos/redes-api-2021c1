@@ -26,4 +26,7 @@ export class UserSchema extends BaseEntity {
 
     @Column({ nullable: false })
     public lastName: string;
+
+    @Column({ nullable: true })
+    public ip: string;
 }

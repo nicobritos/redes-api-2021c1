@@ -9,9 +9,12 @@ import TYPES from '../types';
 import {ID, Nullable} from '@models/utils/UtilityTypes';
 import {Unauthenticated} from '../exceptions/Unauthenticated';
 import {assertStringID} from '@models/utils/Utils';
+import {childLogger} from '../utils/MainLogger';
 
 @injectable()
 export class UserServiceImpl implements UserService {
+    private static readonly LOGGER = childLogger(__dirname, 'UserServiceImpl');
+
     @inject(TYPES.Repositories.UserRepository)
     private repository: UserRepository;
 
@@ -32,13 +35,18 @@ export class UserServiceImpl implements UserService {
         return this.repository.isEmailAvailable(email);
     }
 
-    public async authenticate(email: string, password: string): Promise<AuthenticatedUser> {
+    public async authenticate(email: string, password: string, ip: string): Promise<AuthenticatedUser> {
         let user = await this.repository.findByEmail(email);
         if (!user)
             throw new Unauthenticated();
 
         if (!(await this.authService.verifyPassword(password, user.password!)))
             throw new Unauthenticated();
+
+        await this.repository.setLastLoginIp(assertStringID(user.id), ip);
+        if (user.ip !== null && user.ip !== ip) {
+            UserServiceImpl.LOGGER.alert(`User login with different ip. Last was '${user.ip}' and new one is '${ip}'`);
+        }
 
         return UserServiceImpl.removeSensitiveInformationAuthenticatedUser(
             await this.authService.generateAuthenticatedUser(user)
@@ -49,6 +57,8 @@ export class UserServiceImpl implements UserService {
         if (!user) return user;
 
         user.password = null;
+        user.ip = null;
+
         return user;
     }
 

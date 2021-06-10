@@ -33,6 +33,8 @@ export class User extends GenericEntity<User> {
     private _password: Nullable<string>;
     private _firstName: string;
     private _lastName: string;
+    private _ip: Nullable<string>;
+    private _sameIp: boolean;
 
     get id(): ID {
         return this._id;
@@ -72,6 +74,22 @@ export class User extends GenericEntity<User> {
 
     public set lastName(value: string) {
         this._lastName = value;
+    }
+
+    public get ip(): Nullable<string> {
+        return this._ip;
+    }
+
+    public set ip(value: Nullable<string>) {
+        this._ip = value;
+    }
+
+    public get sameIp(): boolean {
+        return this._sameIp;
+    }
+
+    public set sameIp(value: boolean) {
+        this._sameIp = value;
     }
 
     public toJSON(): JSONSerializableKeys<User> {

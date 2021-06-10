@@ -29,6 +29,14 @@ export class UserRepositoryImpl extends AbstractRepositoryImpl<User, UserSchema>
         })) == 0;
     }
 
+    public async setLastLoginIp(id: string, ip: string): Promise<void> {
+        await this.repository.update({
+            id: id
+        }, {
+            ip: ip
+        });
+    }
+
     public async toEntity(schema: Nullable<UserSchema>): Promise<Nullable<User>> {
         if (!schema) return null;
 

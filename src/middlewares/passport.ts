@@ -13,10 +13,13 @@ passport.use(new Strategy(
         passwordField: 'password',
         session: false,
         usernameField: 'email',
+        passReqToCallback: true
     },
-    function (email, password, cb) {
+    function (req, email, password, cb) {
         let userService: UserService = container.get(TYPES.Services.UserService);
-        return userService.authenticate(email, password)
+        let ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '') as string;
+
+        return userService.authenticate(email, password, ip)
             .then(authenticatedUser => {
                 if (!authenticatedUser) {
                     return cb(new Unauthorized(), null, {message: 'Incorrect email or password.'});
