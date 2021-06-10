@@ -23,10 +23,12 @@ function createExpressApp(): express.Application {
     app.use(bodyParser.json()); // Let express support JSON bodies
     app.use(compression()); // Use gzip
     // @ts-ignore
-    // app.use('*', cors({
-    //     credentials: true,
-    //     origin:
-    // }));
+    app.use('*', cors({
+        credentials: true,
+        origin: function (origin, callback) {
+            callback(null, true)
+        }
+    }));
     app.use(cookieParser());
 
     // Setup express middleware logging and error handling
