@@ -10,8 +10,7 @@ import {DateTime} from 'luxon';
 
 @injectable()
 export class AuthServiceImpl implements AuthService {
-    public static readonly JWT_EXPIRATION_SECONDS = 15 * 60 * 60 * 24; // 15 days
-    public static readonly JWT_EXPIRATION_MILLIS = AuthServiceImpl.JWT_EXPIRATION_SECONDS * 1000; // 15 days in ms
+    public static readonly JWT_EXPIRATION_MILLIS = 15 * 60 * 60 * 24 * 1000; // 15 days in ms
 
     private static readonly ROUNDS = 12;
 

@@ -14,5 +14,21 @@
         "cli": {
             "migrationsDir": "src/repositories/sql/migrations/generated"
         }
+    },
+    {
+        "name": "production",
+        "type": "postgres",
+        "host": "ec2-3-81-49-31.compute-1.amazonaws.com",
+        "port": 5432,
+        "username": "postgres",
+        "password": "postgres",
+        "database": "redes",
+        "synchronize": false,
+        "logging": true,
+        "entities": ["src/interfaces/repositories/schemas/**/*.ts"],
+        "migrations": ["src/repositories/sql/migrations/**/*.ts"],
+        "cli": {
+            "migrationsDir": "src/repositories/sql/migrations/generated"
+        }
     }
 ]

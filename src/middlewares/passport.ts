@@ -30,7 +30,7 @@ passport.use(new Strategy(
 
 passport.use(new JwtCookieComboStrategy(
     {
-        secretOrPublicKey: process.env.JWT_PUBLIC_KEY
+        secretOrPublicKey: 'your_jwt_secret'
     },
     function (jwtPayload: JwtToken, cb) {
         if (jwtPayload.sub) {

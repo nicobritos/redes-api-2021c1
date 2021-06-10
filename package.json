@@ -8,7 +8,7 @@
         "migration:create": "yarn typeorm migration:create -n InitDDL -c development",
         "migration:generate": "yarn typeorm migration:generate -p true -n InitDDL -c development",
         "migration:run": "yarn typeorm migration:run -c development",
-        "development": "set NODE_ENV=development & node_modules/.bin/nodemon --exec \"node_modules/.bin/ts-node -r tsconfig-paths/register src/index.ts\"",
+        "development": "set NODE_ENV=production & node_modules/.bin/nodemon --exec \"node_modules/.bin/ts-node -r tsconfig-paths/register src/index.ts\"",
         "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
     },
     "dependencies": {

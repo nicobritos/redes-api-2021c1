@@ -4,7 +4,7 @@ export const mainLogger = createLogger({
     exitOnError: false,
     format: format.combine(
         format.label({
-            label: 'LatinBox-Server'
+            label: 'REDES-API'
         }),
         format.timestamp(),
         format.metadata(),
