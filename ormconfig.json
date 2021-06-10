@@ -24,7 +24,7 @@
         "password": "postgres",
         "database": "redes",
         "synchronize": false,
-        "logging": true,
+        "logging": false,
         "entities": ["src/interfaces/repositories/schemas/**/*.ts"],
         "migrations": ["src/repositories/sql/migrations/**/*.ts"],
         "cli": {
