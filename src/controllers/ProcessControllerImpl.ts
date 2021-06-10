@@ -19,7 +19,7 @@ export class ProcessControllerImpl implements ProcessController {
     private static readonly LOGGER = childLogger(__dirname, 'ProcessControllerImpl');
 
     public register(app: e.Application): void {
-        app.get('/process', this.process.bind(this));
+        app.post('/process', this.process.bind(this));
     }
 
     public async process(req: Request, res: Response): Promise<void> {
