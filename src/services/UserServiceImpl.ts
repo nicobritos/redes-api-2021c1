@@ -8,7 +8,7 @@ import {User} from '@models/User';
 import TYPES from '../types';
 import {ID, Nullable} from '@models/utils/UtilityTypes';
 import {Unauthenticated} from '../exceptions/Unauthenticated';
-import {assertB32ID} from '@models/utils/Utils';
+import {assertStringID} from '@models/utils/Utils';
 
 @injectable()
 export class UserServiceImpl implements UserService {
@@ -24,7 +24,7 @@ export class UserServiceImpl implements UserService {
 
     public async findById(id: ID): Promise<Nullable<User>> {
         return UserServiceImpl.removeSensitiveInformation(
-            await this.repository.findById(assertB32ID(id))
+            await this.repository.findById(assertStringID(id))
         );
     }
 

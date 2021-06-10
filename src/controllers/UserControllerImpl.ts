@@ -6,9 +6,10 @@ import {UserService} from '../interfaces/services/UserService';
 import passport from 'passport';
 import {AuthenticatedUser} from '@models/AuthenticatedUser';
 import {Unauthorized} from '../exceptions/Unauthorized';
+import {UserController} from '../interfaces/controllers/UserController';
 
 @injectable()
-export class UserControllerImpl implements RegistrableController {
+export class UserControllerImpl implements UserController {
     @inject(TYPES.Services.UserService)
     private readonly userService: UserService;
 

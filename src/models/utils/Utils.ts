@@ -1,34 +1,9 @@
 import {ID, Nullable} from './UtilityTypes';
 import {IDParseError} from '../../exceptions/IDParseError';
-import {IDUtils} from './IDUtils';
-
-export function trimWhitespaces(text: string): string {
-    return collapseWhitespaces(text.trim());
-}
-
-export function collapseWhitespaces(text: string): string {
-    return text
-        .replace(/  +/g, ' ')
-        .replace(/\r\n/g, '\n')
-        .replace(/\r/g, '\n')
-        .replace(/ *\n/g, '\n')
-        .replace(/\n\n\n+/g, '\n\n');
-}
 
 export function assertStringID(id: Nullable<ID>, error: Error = new IDParseError()): string {
     if (!id) throw error;
     return id.toString();
-}
-
-export function assertB32ID(id: Nullable<ID>, error: Error = new IDParseError()): string {
-    let stringId = assertStringID(id);
-    try {
-        IDUtils.decodeB32(stringId);
-    } catch (e) {
-        throw error;
-    }
-
-    return stringId;
 }
 
 /**
