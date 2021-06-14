@@ -13,34 +13,34 @@ export const mainLogger = createLogger({
         format.json(),
     ),
     transports: [
-        // new transports.File({
-        //     level: 'debug',
-        //     filename: 'debug.log',
-        //     dirname: dir,
-        //     maxsize: 1024 * 1024 * 10,
-        //     tailable: true
-        // }),
-        // new transports.File({
-        //     level: 'info',
-        //     filename: 'info.log',
-        //     dirname: dir,
-        //     maxsize: 1024 * 1024 * 10,
-        //     tailable: true
-        // }),
-        // new transports.File({
-        //     level: 'error',
-        //     filename: 'error.log',
-        //     dirname: dir,
-        //     maxsize: 1024 * 1024 * 10,
-        //     tailable: true
-        // }),
-        new transports.Console({
+        new transports.File({
+            level: 'debug',
+            filename: 'debug.log',
+            dirname: dir,
+            maxsize: 1024 * 1024 * 10,
+            tailable: true
+        }),
+        new transports.File({
             level: 'info',
-            log(info: any, next: () => void): any {
-                console.log(JSON.stringify(info, null, 4));
-                next();
-            },
-        })
+            filename: 'info.log',
+            dirname: dir,
+            maxsize: 1024 * 1024 * 10,
+            tailable: true
+        }),
+        new transports.File({
+            level: 'error',
+            filename: 'error.log',
+            dirname: dir,
+            maxsize: 1024 * 1024 * 10,
+            tailable: true
+        }),
+        // new transports.Console({
+        //     level: 'info',
+        //     log(info: any, next: () => void): any {
+        //         console.log(JSON.stringify(info, null, 4));
+        //         next();
+        //     },
+        // })
     ]
 });
 

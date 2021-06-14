@@ -56,15 +56,13 @@ function registerControllers(app: express.Application): void {
         res.on('finish', () => {
             let diff = Date.now() - start;
 
-            console.log('diff');
-
-            // mainLogger.info({
-            //     message: 'stats',
-            //     duration: diff,
-            //     method: req.method,
-            //     status: res.statusCode,
-            //     url: req.url
-            // });
+            mainLogger.info({
+                message: 'stats',
+                duration: diff,
+                method: req.method,
+                status: res.statusCode,
+                url: req.url
+            });
         });
 
         next();
@@ -91,6 +89,5 @@ async function main() {
 }
 
 main().then(() => {
-    console.log('Server spun');
-    // mainLogger.info('Server spun up');
+    mainLogger.info('Server spun up');
 });
