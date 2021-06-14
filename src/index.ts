@@ -55,13 +55,15 @@ function registerControllers(app: express.Application): void {
         res.on('finish', () => {
             let diff = Date.now() - start;
 
-            mainLogger.info({
-                message: 'stats',
-                duration: diff,
-                method: req.method,
-                status: res.statusCode,
-                url: req.url
-            });
+            console.log('diff');
+
+            // mainLogger.info({
+            //     message: 'stats',
+            //     duration: diff,
+            //     method: req.method,
+            //     status: res.statusCode,
+            //     url: req.url
+            // });
         });
 
         next();
