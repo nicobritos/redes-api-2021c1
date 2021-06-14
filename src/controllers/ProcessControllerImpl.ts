@@ -23,7 +23,16 @@ export class ProcessControllerImpl implements ProcessController {
     }
 
     public async process(req: Request, res: Response): Promise<void> {
-        await sleep(randomInt(5000, 10000));
+        let time = randomInt(5000, 15000);
+
+        ProcessControllerImpl.LOGGER.info({
+            url: req.url,
+            status: 204,
+            reason: `Time spent: ${time}`
+        });
+
+        await sleep(time);
+
         res.sendStatus(204);
     }
 }

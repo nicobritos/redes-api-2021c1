@@ -18,7 +18,7 @@
     {
         "name": "production",
         "type": "postgres",
-        "host": "107.20.237.101",
+        "host": "172.31.45.23",
         "port": 5432,
         "username": "postgres",
         "password": "postgres",
