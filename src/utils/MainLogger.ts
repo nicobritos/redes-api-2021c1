@@ -13,27 +13,27 @@ export const mainLogger = createLogger({
         format.json(),
     ),
     transports: [
-        new transports.File({
-            level: 'debug',
-            filename: 'debug.log',
-            dirname: dir,
-            maxsize: 1024 * 1024 * 10,
-            tailable: true
-        }),
-        new transports.File({
-            level: 'info',
-            filename: 'info.log',
-            dirname: dir,
-            maxsize: 1024 * 1024 * 10,
-            tailable: true
-        }),
-        new transports.File({
-            level: 'error',
-            filename: 'error.log',
-            dirname: dir,
-            maxsize: 1024 * 1024 * 10,
-            tailable: true
-        }),
+        // new transports.File({
+        //     level: 'debug',
+        //     filename: 'debug.log',
+        //     dirname: dir,
+        //     maxsize: 1024 * 1024 * 10,
+        //     tailable: true
+        // }),
+        // new transports.File({
+        //     level: 'info',
+        //     filename: 'info.log',
+        //     dirname: dir,
+        //     maxsize: 1024 * 1024 * 10,
+        //     tailable: true
+        // }),
+        // new transports.File({
+        //     level: 'error',
+        //     filename: 'error.log',
+        //     dirname: dir,
+        //     maxsize: 1024 * 1024 * 10,
+        //     tailable: true
+        // }),
         new transports.Console({
             level: 'info',
             log(info: any, next: () => void): any {
@@ -45,6 +45,5 @@ export const mainLogger = createLogger({
 });
 
 export function childLogger(fileName: string, className: string) {
-    // return mainLogger.child({ fileName: fileName, class: className });
-    return mainLogger;
+    return mainLogger.child({ fileName: fileName, class: className });
 }
