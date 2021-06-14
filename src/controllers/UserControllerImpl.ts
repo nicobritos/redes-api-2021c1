@@ -64,6 +64,7 @@ export class UserControllerImpl implements UserController {
                 username: req.body.email,
                 ip: ip,
             });
+            console.log("wtf this is not working");
 
             if (status > 0) {
                 res.sendStatus(status);
