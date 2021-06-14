@@ -45,5 +45,6 @@ export const mainLogger = createLogger({
 });
 
 export function childLogger(fileName: string, className: string) {
-    return mainLogger.child({ fileName: fileName, class: className });
+    // return mainLogger.child({ fileName: fileName, class: className });
+    return mainLogger;
 }
