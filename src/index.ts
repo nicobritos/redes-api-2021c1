@@ -55,13 +55,13 @@ function registerControllers(app: express.Application): void {
         res.on('finish', () => {
             let diff = Date.now() - start;
 
-            mainLogger.info({
+            mainLogger.info(JSON.stringify({
                 message: 'stats',
                 duration: diff,
                 method: req.method,
                 status: res.statusCode,
                 url: req.url
-            })
+            }));
         });
 
         next();

@@ -44,12 +44,6 @@ export class UserControllerImpl implements UserController {
     }
 
     public async login(req: Request, res: Response): Promise<void> {
-
-        UserControllerImpl.LOGGER.info({
-            url: req.url,
-            username: req.body.email,
-        });
-        console.log("wtf wtf");
         passport.authenticate('local', {session: false}, async (err, user: AuthenticatedUser, passportInfo) => {
             let ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '') as string;
             let status = 0;
