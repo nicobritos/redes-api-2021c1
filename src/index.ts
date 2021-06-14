@@ -42,7 +42,8 @@ function createExpressApp(): express.Application {
     });
 
     app.listen(process.env.EXPRESS_PORT, function () {
-        mainLogger.info(`App listening on port ${process.env.EXPRESS_PORT}!`);
+        console.log('Appppppppppppppppppppppp');
+        // mainLogger.info(`App listening on port ${process.env.EXPRESS_PORT}!`);
     });
 
     return app;
@@ -90,5 +91,6 @@ async function main() {
 }
 
 main().then(() => {
-    mainLogger.info('Server spun up');
+    console.log('Server spun');
+    // mainLogger.info('Server spun up');
 });
