@@ -50,13 +50,10 @@ export class UserControllerImpl implements UserController {
 
             if (!err && !user) {
                 status = 401;
-                return res.sendStatus(401);
             } else if (err instanceof Unauthorized || !user) {
                 status = 401;
-                return res.sendStatus(401);
             } else if (err instanceof Error) {
                 status = 500;
-                return res.sendStatus(500);
             }
 
             UserControllerImpl.LOGGER.info({
@@ -72,7 +69,7 @@ export class UserControllerImpl implements UserController {
                 res.sendStatus(status);
             } else {
                 res.status(200);
-                return res.send(user);
+                res.send(user);
             }
         })(req, res);
     }
