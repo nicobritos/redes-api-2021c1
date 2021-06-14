@@ -34,13 +34,13 @@ export const mainLogger = createLogger({
             maxsize: 1024 * 1024 * 10,
             tailable: true
         }),
-        // new transports.Console({
-        //     level: 'info',
-        //     log(info: any, next: () => void): any {
-        //         console.log(JSON.stringify(info, null, 4));
-        //         next();
-        //     },
-        // })
+        new transports.Console({
+            level: 'info',
+            log(info: any, next: () => void): any {
+                console.log(JSON.stringify(info, null, 4));
+                next();
+            },
+        })
     ]
 });
 

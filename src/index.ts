@@ -42,8 +42,7 @@ function createExpressApp(): express.Application {
     });
 
     app.listen(process.env.EXPRESS_PORT, function () {
-        console.log('Appppppppppppppppppppppp');
-        // mainLogger.info(`App listening on port ${process.env.EXPRESS_PORT}!`);
+        mainLogger.info(`App listening on port ${process.env.EXPRESS_PORT}!`);
     });
 
     return app;
