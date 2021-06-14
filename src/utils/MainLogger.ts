@@ -1,6 +1,6 @@
 import {createLogger, format, transports} from 'winston';
 
-const dir = process.env.NODE_ENV!.trim() === 'production' ? '/var/log/api' : './logs';
+const dir = process.env.NODE_ENV!.trim() === 'production' ? '/home/ec2-user/redes-api-2021c1/logs' : './logs';
 
 export const mainLogger = createLogger({
     exitOnError: false,
