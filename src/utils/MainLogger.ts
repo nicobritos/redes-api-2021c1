@@ -1,5 +1,7 @@
 import {createLogger, format, transports} from 'winston';
 
+const dir = process.env.NODE_ENV!.trim() === 'production' ? '/var/api/logs' : './logs';
+
 export const mainLogger = createLogger({
     exitOnError: false,
     format: format.combine(
@@ -14,21 +16,21 @@ export const mainLogger = createLogger({
         new transports.File({
             level: 'debug',
             filename: 'debug.log',
-            dirname: './logs',
+            dirname: dir,
             maxsize: 1024 * 1024 * 10,
             tailable: true
         }),
         new transports.File({
             level: 'info',
             filename: 'info.log',
-            dirname: './logs',
+            dirname: dir,
             maxsize: 1024 * 1024 * 10,
             tailable: true
         }),
         new transports.File({
             level: 'error',
             filename: 'error.log',
-            dirname: './logs',
+            dirname: dir,
             maxsize: 1024 * 1024 * 10,
             tailable: true
         }),
