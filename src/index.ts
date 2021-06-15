@@ -49,6 +49,10 @@ function createExpressApp(): express.Application {
 }
 
 function registerControllers(app: express.Application): void {
+    app.get('/_heartbeat', (req, res, next) => {
+        res.sendStatus(204);
+    });
+
     app.use((req, res, next) => {
         let start = Date.now();
 
