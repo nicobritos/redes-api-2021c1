@@ -45,7 +45,7 @@ export class UserServiceImpl implements UserService {
 
         await this.repository.setLastLoginIp(assertStringID(user.id), ip);
         if (user.ip !== null && user.ip !== ip) {
-            UserServiceImpl.LOGGER.alert(JSON.stringify({
+            UserServiceImpl.LOGGER.warn(JSON.stringify({
                 reason: 'login_ip',
                 message: 'User login with different IP',
                 lastLoginIp: user.ip,
