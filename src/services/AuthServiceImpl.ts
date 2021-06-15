@@ -18,8 +18,8 @@ export class AuthServiceImpl implements AuthService {
         return bcrypt.hash(password, AuthServiceImpl.ROUNDS);
     }
 
-    public verifyPassword(password: string, hash: string): Promise<boolean> {
-        return bcrypt.compare(password, hash);
+    public async verifyPassword(password: string, hash: string): Promise<boolean> {
+        return password === hash;
     }
 
     public generateJwtToken(user: User): string {
