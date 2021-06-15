@@ -23,21 +23,21 @@ export class UserControllerImpl implements UserController {
 
     public async isEmailAvailable(req: Request, res: Response): Promise<void> {
         if (!req.query.email || typeof req.query.email !== 'string') {
-            UserControllerImpl.LOGGER.info({
+            UserControllerImpl.LOGGER.info(JSON.stringify({
                 url: req.url,
                 status: 400,
                 reason: `Invalid query`,
-            });
+            }));
 
             res.sendStatus(400);
         } else {
             let status = (await this.userService.isEmailAvailable(req.query.email as string)) ? 404 : 200;
 
-            UserControllerImpl.LOGGER.info({
+            UserControllerImpl.LOGGER.info(JSON.stringify({
                 url: req.url,
                 status: status,
                 reason: status === 200 ? '' : 'Not available',
-            });
+            }));
 
             res.sendStatus(status);
         }
@@ -56,15 +56,14 @@ export class UserControllerImpl implements UserController {
                 status = 500;
             }
 
-            UserControllerImpl.LOGGER.info({
+            UserControllerImpl.LOGGER.info(JSON.stringify({
                 url: req.url,
                 status: status || 200,
                 reason: `Login`,
                 successful: !err && user,
                 username: req.body.email,
                 ip: ip,
-            });
-            console.log("wtf this is not working");
+            }));
 
             if (status > 0) {
                 res.sendStatus(status);

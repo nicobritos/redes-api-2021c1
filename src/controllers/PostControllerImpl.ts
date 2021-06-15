@@ -35,41 +35,41 @@ export class PostControllerImpl implements PostController {
 
     public async findById(req: Request, res: Response): Promise<void> {
         if (Object.keys(req.query).length > 0) {
-            PostControllerImpl.LOGGER.info({
+            PostControllerImpl.LOGGER.info(JSON.stringify({
                 url: req.url,
                 status: 400,
                 reason: 'Invalid query'
-            });
+            }));
             res.sendStatus(400);
         }
 
         try {
             assertStringID(req.params.id);
         } catch (e) {
-            PostControllerImpl.LOGGER.error({
+            PostControllerImpl.LOGGER.error(JSON.stringify({
                 url: req.url,
                 status: 400,
                 reason: JSON.stringify(e)
-            });
+            }));
 
             res.sendStatus(400);
         }
 
         let post = await this.service.findById(req.params.id);
         if (!!post) {
-            PostControllerImpl.LOGGER.info({
+            PostControllerImpl.LOGGER.info(JSON.stringify({
                 url: req.url,
                 status: 200,
                 reason: ''
-            });
+            }));
 
             res.status(200).send(post);
         } else {
-            PostControllerImpl.LOGGER.info({
+            PostControllerImpl.LOGGER.info(JSON.stringify({
                 url: req.url,
                 status: 404,
                 reason: 'Post not found'
-            });
+            }));
 
             res.sendStatus(404);
         }
